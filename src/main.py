@@ -21,13 +21,56 @@ def stable_id(s):
     return hashlib.sha256(s.encode()).hexdigest()[:16]
 
 WEIRD_KEYWORDS = [
-    # core
-    "weird","odd","bizarre","unusual","strange","peculiar","quirky","surreal",
-    "mystery","mysterious","escaped","giant","miniature","ufo","alien",
-    "zoo","animal","bandit","toilet","cheese","squirrel","bear","goat",
-    "lottery","guinness","world record","strange news","odd news","curious",
-    "unexplained","viral","prank","museum","cryptid","haunted","sighting"
+    # Core "weird" words
+    "weird", "odd", "bizarre", "unusual", "strange", "peculiar", "quirky", "surreal",
+    "eccentric", "offbeat", "freaky", "curious", "unexplained", "mystery", "mysterious",
+    "unorthodox", "outlandish", "zany", "whimsical", "wacky", "absurd", "nonsensical",
+    "ridiculous", "hilarious", "funny", "comic", "comical", "satire", "spoof", "parody",
+
+    # Animals & creatures
+    "escaped", "zoo", "animal", "wildlife", "bear", "goat", "cow", "chicken", "duck",
+    "ostrich", "emu", "kangaroo", "koala", "llama", "alpaca", "sheep", "pig", "boar",
+    "squirrel", "otter", "penguin", "parrot", "macaw", "cockatoo", "pigeon", "rat",
+    "snake", "python", "cobra", "alligator", "crocodile", "frog", "toad", "turtle",
+    "tortoise", "lizard", "iguana", "gecko", "shark", "whale", "dolphin", "seal",
+    "octopus", "squid", "crab", "lobster", "spider", "tarantula", "scorpion", "bee",
+    "wasp", "hornet", "insect", "beetle", "moth", "butterfly",
+
+    # Food & drink oddities
+    "cheese", "chocolate", "pizza", "burger", "sandwich", "taco", "burrito", "pasta",
+    "spaghetti", "sushi", "ramen", "noodle", "tofu", "cake", "cookie", "biscuit",
+    "donut", "croissant", "bagel", "coffee", "tea", "beer", "wine", "vodka", "whiskey",
+    "cocktail", "smoothie", "milkshake", "ice cream", "dessert", "snack",
+
+    # Records & competitions
+    "guinness", "world record", "record-breaking", "championship", "contest", "tournament",
+    "lottery", "jackpot", "prize", "winner", "champion", "medal", "trophy", "award",
+    "competition", "challenge", "stunt", "dare", "marathon",
+
+    # Strange events / places
+    "alien", "ufo", "extraterrestrial", "spaceship", "flying saucer", "meteor", "asteroid",
+    "planet", "moon", "martian", "space", "haunted", "ghost", "cryptid", "bigfoot",
+    "yeti", "loch ness", "sighting", "apparition", "poltergeist", "vampire", "werewolf",
+    "witch", "wizard", "fairy", "gnome", "troll", "mythical", "legend", "folklore",
+    "superstition", "omen", "curse", "ritual", "ceremony", "festival", "parade",
+
+    # Quirky human stories
+    "prank", "hoax", "meme", "viral", "trend", "streaker", "flashmob", "cosplay",
+    "impersonator", "lookalike", "superfan", "obsession", "addiction", "eccentricity",
+    "collection", "collector", "hobbyist", "invention", "gadget", "contraption", "device",
+    "innovation", "prototype", "robot", "android", "drone",
+
+    # Odd crimes & legal quirks
+    "heist", "bandit", "thief", "robber", "burglary", "smuggling", "contraband",
+    "counterfeit", "fraud", "scam", "swindle", "arrested", "busted", "police chase",
+    "mugshot", "lawsuit", "verdict", "trial", "weird law", "ban", "prohibition",
+
+    # Miscellaneous
+    "toilet", "bathroom", "restroom", "plumbing", "sewer", "underground", "subway",
+    "tunnel", "bridge", "monument", "statue", "sculpture", "artwork", "graffiti",
+    "museum", "exhibit", "installation", "performance", "street art", "installation art"
 ]
+
 
 def score_weird(title, text):
     t = (title + " " + text[:1200]).lower()
