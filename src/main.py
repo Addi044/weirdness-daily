@@ -21,10 +21,27 @@ def stable_id(s):
     return hashlib.sha256(s.encode()).hexdigest()[:16]
 
 WEIRD_KEYWORDS = [
-    "bizarre","weird","odd","unusual","strange","mystery","escaped","giant",
-    "ufo","zoo","bandit","toilet","cheese","squirrel","python","bear",
-    "goat","florida","lottery","guinness","world record","strange news"
+    # core
+    "weird","odd","bizarre","unusual","strange","peculiar","quirky","surreal",
+    "mystery","mysterious","escaped","giant","miniature","ufo","alien",
+    "zoo","animal","bandit","toilet","cheese","squirrel","bear","goat",
+    "lottery","guinness","world record","strange news","odd news","curious",
+    "unexplained","viral","prank","museum","cryptid","haunted","sighting"
 ]
+
+def score_weird(title, text):
+    t = (title + " " + text[:1200]).lower()
+    score = 0
+    for k in WEIRD_KEYWORDS:
+        if k in t:
+            score += 1
+    if len(text) > 300:  # has some substance
+        score += 1
+    # penalize grim topics
+    if re.search(r"\b(murder|war|assault|shooting|tragedy|suicide|hate)\b", t):
+        score -= 5
+    return score
+
 
 def score_weird(title, text):
     t = (title + " " + text[:1200]).lower()
@@ -37,19 +54,20 @@ def load_sources():
     with open(SOURCES_PATH, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)["rss"]
 
-def collect_entries(rss_urls, per_feed=15):
+def collect_entries(rss_urls, per_feed=25):
     seen = set()
     out = []
     for u in rss_urls:
         try:
             feed = feedparser.parse(u)
             for e in feed.entries[:per_feed]:
-                link = e.get("link") or ""
+                link  = e.get("link") or ""
                 title = (e.get("title") or "").strip()
-                if not link or (link in seen): 
+                desc  = (e.get("summary") or e.get("description") or "").strip()
+                if not link or (link in seen):
                     continue
                 seen.add(link)
-                out.append({"title": title, "link": link})
+                out.append({"title": title, "link": link, "summary_hint": desc})
         except Exception:
             continue
     return out
@@ -112,13 +130,29 @@ def main():
     for it in entries:
         text = extract_article(it["link"])
         if not text:
+            text = it.get("summary_hint", "")
+        if not text:
             continue
         s = score_weird(it["title"], text)
-        if s >= 2:  # passable weirdness
+        if s >= 1:  # passable weirdness
             candidates.append((s, it, text))
     # rank best-first, then take top N
     candidates.sort(key=lambda x: -x[0])
-    top = candidates[:N_POSTS]
+    # cap per-domain so one source can't dominate
+    domain_cap = 2
+    picked = []
+    per_domain = {}
+    
+    for _, it, text in candidates:
+        d = domain(it["link"])
+        if per_domain.get(d, 0) >= domain_cap:
+            continue
+        picked.append((it, text))
+        per_domain[d] = per_domain.get(d, 0) + 1
+        if len(picked) >= N_POSTS:
+            break
+
+    top = picked
 
     posts = []
     for _, it, text in top:
