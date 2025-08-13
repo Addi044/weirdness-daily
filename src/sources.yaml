@@ -5,7 +5,7 @@ rss:
   - https://feeds.skynews.com/feeds/rss/strange.xml
   - https://www.upi.com/Science_News/Strange_News/rss/
   - https://www.npr.org/rss/rss.php?id=1019
-  - https://apnews.com/apf-oddities
+  # - https://apnews.com/apf-oddities
   - https://www.theguardian.com/world/series/and-finally/rss
   - https://www.cbsnews.com/latest/rss/odd-news
   - https://rss.nytimes.com/services/xml/rss/nyt/WeirdNews.xml
