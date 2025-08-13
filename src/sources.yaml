@@ -1,14 +1,49 @@
 rss:
-  # Major odd/strange sections
+  # --- Major "Odd / Strange" sections from big outlets ---
   - https://feeds.bbci.co.uk/news/odd/rss.xml
   - https://www.huffpost.com/section/weird-news/feed
   - https://feeds.skynews.com/feeds/rss/strange.xml
   - https://www.upi.com/Science_News/Strange_News/rss/
-  - https://www.npr.org/rss/rss.php?id=1019          # NPR "Strange News"
-  - https://boingboing.net/feed                     # Boing Boing (quirky/odd)
-  - https://www.atlasobscura.com/rss                # Atlas Obscura stories
+  - https://www.npr.org/rss/rss.php?id=1019
+  - https://apnews.com/apf-oddities
+  - https://www.theguardian.com/world/series/and-finally/rss
+  - https://www.cbsnews.com/latest/rss/odd-news
+  - https://rss.nytimes.com/services/xml/rss/nyt/WeirdNews.xml
 
-  # Reddit (odd headlines; we’ll use summary, not scrape)
+  # --- Quirky / Culture / Offbeat ---
+  - https://boingboing.net/feed
+  - https://www.atlasobscura.com/rss
+  - https://www.mentalfloss.com/rss
+  - https://www.smithsonianmag.com/rss/latest_articles/
+  - https://laughingsquid.com/feed/
+  - https://www.oddee.com/feed/
+  - https://www.cracked.com/rss/all
+  - https://www.onlyinyourstate.com/feed/
+
+  # --- Fun science & discoveries ---
+  - https://www.sciencenews.org/feed
+  - https://www.iflscience.com/rss
+  - https://gizmodo.com/rss
+  - https://www.space.com/feeds/all
+  - https://www.livescience.com/feeds/all
+  - https://www.popularmechanics.com/rss/all.xml
+  - https://www.newscientist.com/feed/home/
+
+  # --- Local / regional "offbeat" pages ---
+  - https://www.stuff.co.nz/rss
+  - https://www.smh.com.au/rss/feed.xml
+  - https://www.ctvnews.ca/rss/oddities/oddities
+  - https://globalnews.ca/feed/
+  - https://www.thelocal.de/feeds/rss.php
+
+  # --- Reddit subreddits with quirky headlines ---
   - https://www.reddit.com/r/nottheonion/.rss
   - https://www.reddit.com/r/WTF/.rss
   - https://www.reddit.com/r/oddlyterrifying/.rss
+  - https://www.reddit.com/r/todayilearned/.rss
+  - https://www.reddit.com/r/interestingasfuck/.rss
+
+  # --- Miscellaneous oddities & humor blogs ---
+  - https://awkwardfamilyphotos.com/feed/
+  - https://www.failblog.org/rss
+  - https://feeds.feedburner.com/FMyLife
