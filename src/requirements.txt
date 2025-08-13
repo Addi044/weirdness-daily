@@ -2,3 +2,4 @@ feedparser
 trafilatura
 PyYAML
 openai
+requests
